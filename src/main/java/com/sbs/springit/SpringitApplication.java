@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import com.sbs.springit.config.SpringitProperties;
 
@@ -21,12 +22,13 @@ public class SpringitApplication {
 	}
 	
 	@Bean
-	
+	@Profile("dev")
 	CommandLineRunner runner() {
 		return args -> {
 			System.out.println("Welcome message: " + springitProperties.getWelcomeMsg());
+			System.out.println("I would only do this in dev.");
 		};
 	}
-
+	
 }
 
