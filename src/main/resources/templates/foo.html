@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head(title = ${pageTitle})}">
+</head>
+<body>
+    <nav th:replace="~{layouts/main_layout :: nav}"></nav>
+    <div th:replace="~{layouts/main_layout :: jumbotron}"></div>
+    
+    <!-- <div th:replace="~{layouts/main_layout :: content}">
+        <p>This is my content</p>
+    </div> -->
+    
+    <div class="container">
+       <h1>This is my foo page!</h1>
+       <p>Here is some content</p>
+    </div>
+    
+</body>
+</html>
