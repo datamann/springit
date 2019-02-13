@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(1)
-public class DatabaseLoader implements CommandLineRunner{
+public class DatabaseLoader1 implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {

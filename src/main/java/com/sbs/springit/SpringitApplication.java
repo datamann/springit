@@ -1,23 +1,16 @@
 package com.sbs.springit;
 
-import java.util.List;
-
+import org.ocpsoft.prettytime.PrettyTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.sbs.springit.config.SpringitProperties;
-import com.sbs.springit.domain.Comment;
-import com.sbs.springit.domain.Link;
-import com.sbs.springit.repository.CommentsRepository;
-import com.sbs.springit.repository.LinkRepository;
 
 @SpringBootApplication
 @EnableConfigurationProperties(SpringitProperties.class)
@@ -34,7 +27,11 @@ public class SpringitApplication {
 	}
 	
 	@Bean
-	@Profile("dev")
+	PrettyTime prettyTime() {
+		return new PrettyTime();
+	}
+	
+	/*@Profile("dev")
 	CommandLineRunner runner(LinkRepository linkRepository, CommentsRepository commentsRepository) {
 		return args -> {
 			System.out.println("Welcome message: " + springitProperties.getWelcomeMsg());
@@ -50,7 +47,7 @@ public class SpringitApplication {
 			Link link = new Link("Getting started with Spring Boot 2", "https://vg.no");
 			
 			linkRepository.save(link);
-			
+				
 			Comment comment = new Comment("This Spring Boot 2 link is awesome!", link);
 			commentsRepository.save(comment);
 			link.addComment(comment);
@@ -67,7 +64,7 @@ public class SpringitApplication {
 				System.out.println(temp.getTitle());
 			}
 		};
-	}
+	}*/
 	
 }
 
