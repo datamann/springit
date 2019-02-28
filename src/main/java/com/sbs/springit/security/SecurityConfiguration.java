@@ -21,14 +21,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
-				.antMatchers("/link/submit").hasRole("ADMIN")
+				.antMatchers("/h2c/**").permitAll()
+				.antMatchers("/link/submit").hasRole("USER")
 			.and()
 			.formLogin();
 	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
+		//auth.getDefaultUserDetailsService();
+		auth.userDetailsService(userDetailsService());
 	}
-
 }

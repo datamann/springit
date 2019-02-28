@@ -26,5 +26,4 @@ public class UserDetailsServiceImpl {
 		
 		return user.get();
 	}
-
 }

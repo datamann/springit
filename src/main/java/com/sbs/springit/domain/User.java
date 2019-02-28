@@ -1,9 +1,7 @@
 package com.sbs.springit.domain;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,15 +21,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
+//@NoArgsConstructor
 public class User implements UserDetails{
 	
 	@Id @GeneratedValue
@@ -54,9 +52,17 @@ public class User implements UserDetails{
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id")
-    )
+    )	
 	
 	private Set<Role> roles = new HashSet<>();
+	
+	public void addRole(Role role) {
+		roles.add(role);
+	}
+	
+	public void addRoles(Set<Role> roles) {
+		roles.forEach(this::addRole);
+	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -90,5 +96,11 @@ public class User implements UserDetails{
     public boolean isEnabled() {
         return enabled;
     }
-	
+
+	public User(@NonNull @Size(min = 8, max = 20) String email, @NonNull String password, boolean enabled, Set<Role> roles) {
+		this.email = email;
+		this.password = password;
+		this.enabled = enabled;
+		this.roles = roles;
+	}	
 }
