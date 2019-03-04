@@ -1,6 +1,8 @@
 package com.sbs.springit.bootstrap;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import org.springframework.boot.CommandLineRunner;
@@ -71,7 +73,7 @@ public class DatabaseLoader implements CommandLineRunner {
 	    Role adminRole = new Role("ROLE_ADMIN");
 	    roleRepository.save(adminRole);
 
-	    User user = new User("user@gmail.com",secret,true,"User");
+	    User user = new User("user@gmail.com",secret,true);
 	    user.addRole(userRole);
 	    userRepository.save(user);
 
@@ -79,7 +81,7 @@ public class DatabaseLoader implements CommandLineRunner {
 	    admin.addRole(adminRole);
 	    userRepository.save(admin);
 
-	    User master = new User("master@gmail.com",secret,true);
+	    User master = new User("super@gmail.com",secret,true);
 	    master.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
 	    userRepository.save(master);
 		

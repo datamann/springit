@@ -20,16 +20,19 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@SuppressWarnings("serial")
 @Entity
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
-//@NoArgsConstructor
+@NoArgsConstructor
 public class User implements UserDetails{
 	
 	@Id @GeneratedValue
@@ -44,6 +47,7 @@ public class User implements UserDetails{
 	@Column(length = 100)
 	private String password;
 	
+	@NonNull
 	@Column(nullable = false)
 	private boolean enabled;
 	
@@ -97,10 +101,9 @@ public class User implements UserDetails{
         return enabled;
     }
 
-	public User(@NonNull @Size(min = 8, max = 20) String email, @NonNull String password, boolean enabled, Set<Role> roles) {
+	/*public User(@NonNull @Size(min = 8, max = 20) String email, @NonNull String password, boolean enabled) {
 		this.email = email;
 		this.password = password;
 		this.enabled = enabled;
-		this.roles = roles;
-	}	
+	}*/
 }
